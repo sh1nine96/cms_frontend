@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
-
+// import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ListClientComponent from "./components/listClientComponent";
+import ClientDetailsComponent from "./components/clientDetailsComponent";
+import UpdateClientComponent from "./components/updateClientComponent";
+import AddClientComponent from "./components/addClientComponent";
+import WelcomePageController from "./components/welcomePageController";
+import InvoiceFormComponent from "./components/invoiceFormComponent";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<WelcomePageController />} />
+        <Route
+          exact
+          path="/ClientManagement/readService/listAll"
+          element={<ListClientComponent />}
+        />
+
+        <Route
+          exact
+          path="/ClientManagement/readService/findById"
+          element={<ClientDetailsComponent />}
+        />
+        <Route
+          exact
+          path="/ClientManagement/updateService/updateExistingClientRecord/:id"
+          element={<UpdateClientComponent />}
+        />
+        <Route
+          exact
+          path="/ClientManagement/createService/addNewClients"
+          element={<AddClientComponent />}
+        />
+        <Route
+          exact
+          path="/ClientManagement/createService/addNewInvoices/"
+          element={<InvoiceFormComponent />}
+        />
+      </Routes>
+    </Router>
   );
 }
 
